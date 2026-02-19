@@ -1,0 +1,15 @@
+/* Limpieza total de estorbos */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000; /* Fondo negro de base */
+  color: white;
+  overflow-x: hidden; /* Evita que aparezca la barrita de abajo */
+}
+
+/* Evita que el navegador centre todo como si fuera un post de Medium */
+body {
+  display: block; 
+}

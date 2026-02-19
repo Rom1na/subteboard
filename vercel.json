@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api-subte/:path*",
+      "destination": "https://apitransporte.buenosaires.gob.ar/:path*"
+    }
+  ]
+}

@@ -1,0 +1,457 @@
+/* App.css */
+
+:root {
+  background-color: #050505; /* Negro profundo */
+  width: 100vw;
+}
+
+
+#root, body, html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow-x: hidden; /* Evita scroll horizontal raro */
+}
+
+
+
+.board-container {
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  max-width: 100vw;
+  width: 100vw;       /* 100% del ancho de la ventana */
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #ddd;
+}
+
+.refresh-btn {
+  background: #222;
+  color: #00ff00; /* Verde matrix/terminal */
+  border: 1px solid #00ff00;
+  padding: 8px 15px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.refresh-btn:active {
+  background: #00ff00;
+  color: #000;
+}
+
+.status-msg {
+  text-align: center;
+  color: #666;
+  margin-top: 50px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* Animación de rotación para cuando cargue */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+.back-btn{
+   padding: 8px;
+  
+}
+/* 
+.update-tag{
+  font-size: 0.75rem;
+  color: #ffb000;
+  text-align: left;
+  width: 100%;
+  font-style: italic;
+  margin-top: 5px;
+  opacity: 0.8;
+} */
+
+
+
+.update-tag {
+  font-family: 'VT323', monospace;
+  color: #ffb000;
+  background: rgba(0, 0, 0, 0.4); /* Fondo bien oscuro para que el ámbar brille */
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 0.75rem;
+  border: 1px solid rgba(255, 176, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 5px rgba(255, 176, 0, 0.2); /* Un leve resplandor */
+}
+
+
+/* BoardRow*/
+
+.board-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 1px solid #1a1a1a;
+  background: #050505;
+}
+
+.station-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: #efefef;
+  font-weight: 600;
+  flex: 1;
+}
+
+/* El circulito de color de la línea */
+.line-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: white;
+  font-weight: bold;
+}
+
+/* Colores oficiales aproximados */
+.line-dot.A { background: #0099cc; }
+.line-dot.B { background: #eb1923; }
+.line-dot.C { background: #0056a0; }
+.line-dot.D { background: #007e67; }
+.line-dot.E { background: #602b8d; }
+.line-dot.H { background: #ffca08; color: black; }
+
+/* Efecto Tablilla */
+.flap-container {
+  min-width: 80px;
+  text-align: right;
+}
+
+/* El contenedor del número */
+.flap-number {
+  background: linear-gradient(to bottom, #222 49%, #000 50%, #151515 51%);
+  color: #ffcc00;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: inline-block; /* Para que la transformación funcione bien */
+  transition: transform 0.3s ease-in; /* Transición suave al volver */
+  text-shadow: 0 0 5px rgba(255, 204, 0, 0.4); /* Un leve brillo ámbar */
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+
+.flap-number::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/*Botonera */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.menu-button {
+  height: 100px;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.menu-button:hover { transform: scale(1.05); }
+
+/* Colores Oficiales */
+.btn-A { background-color: #00afce; }
+.btn-B { background-color: #db0024; }
+.btn-C { background-color: #003a8c; }
+.btn-D { background-color: #008146; }
+.btn-E { background-color: #6e2b85; }
+.btn-H { background-color: #ffcc00; color: black; }
+
+
+
+
+/* La animación cuando se activa la clase .flipping */
+.flipping .flap-number {
+  animation: flip-mechanical 0.6s ease-in-out;
+}
+
+@keyframes flip-mechanical {
+  0% {
+    transform: rotateX(0deg);
+    filter: brightness(1);
+  }
+  50% {
+    transform: rotateX(-90deg); /* La tablilla queda de perfil */
+    filter: brightness(0.5);   /* Se oscurece por la sombra */
+  }
+  100% {
+    transform: rotateX(0deg);
+    filter: brightness(1);
+  }
+}
+
+/* Agregamos perspectiva al contenedor para que el giro se vea 3D */
+.flap-container {
+  min-width: 80px;
+  text-align: right;
+  perspective: 300px; 
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mode-switch-btn {
+  background: transparent;
+  color: #ffcc00; /* Color ambar */
+  border: 1px solid #ffcc00;
+  padding: 8px 15px;
+  font-family: inherit;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.mode-switch-btn:hover {
+  background: rgba(255, 204, 0, 0.1);
+}
+
+
+
+/* --- Estilos del Layout --- */
+
+/* Por defecto (Mobile): El mapa no se ve */
+.column-map {
+  display: none;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+/* Solo para Desktop (Pantallas mayores a 1024px) */
+@media (min-width: 1024px) {
+   .main-layout {
+    display: flex;
+    justify-content: flex-start; /* Alinea al inicio */
+    gap: 50px;                   /* Espacio entre tabla y mapa */
+    width: 100vw;
+  }
+
+
+  .layout-container {
+    flex-direction: row; /* Ponemos uno al lado del otro */
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: flex-start;
+  }
+
+  .column-board {
+    width: 500px;                /* Ancho fijo para que tus botones no se estiren */
+    flex-shrink: 0;              /* Que no se achique */
+  }
+
+  .column-map {
+    flex-grow: 1;                /* ¡ESTO es lo que hace que el mapa ocupe el resto! */
+    height: 85vh;                /* Mapa bien alto */
+    position: sticky;
+    top: 20px;
+  }
+  .app-container{
+   
+    width: 95vw;
+  }
+}
+
+
+.direction-header {
+  color: #ffae00; /* Ese naranja/ámbar que ya tenés */
+  font-size: 0.85rem;
+  border-bottom: 1px solid #333;
+  padding: 10px 0 5px 0;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.board-section {
+  margin-bottom: 25px; /* Espacio entre los dos grupos de trenes */
+}
+
+
+
+.direction-header {
+  color: #ffae00; /* Ámbar */
+  text-shadow: 
+    0 0 5px rgba(255, 174, 0, 0.7), 
+    0 0 10px rgba(255, 174, 0, 0.5);
+  letter-spacing: 2px;
+  /* Animación sutil de parpadeo */
+  animation: flicker 0.15s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.95; }
+  100% { opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+/* --- Estilo del Mapa y el Filtro Dark --- */
+
+.map-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid var(--line-color, #333);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.subte-map-embed {
+  display: block;
+  /* El truco para oscurecer el mapa de OSM */
+  filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(110%);
+  /* invert(90%): pasa el blanco a casi negro.
+     hue-rotate(180deg): intenta que los colores de las líneas vuelvan a su tono original.
+  */
+  width: 100%;
+  height: 100%; /* Obliga al iframe a llenar todo el wrapper */
+  border: none;
+  width: 80vw;
+  height: 100%;
+  border: 1px solid #333;
+  border-radius: 12px;
+  /* El filtro que ya tenías */
+  filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(110%);
+  
+ 
+}
+
+
+
+@media (min-width: 1024px) {
+  /* Este es el nuevo contenedor que debés envolver alrededor de tu tablero y mapa */
+  .main-layout {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0 40px;
+  }
+
+  .column-board {
+    flex: 0 0 500px ;
+    /* Si querés que los nombres de estaciones no se estiren al infinito: */
+    max-width: 500px; 
+  }
+
+  .column-map {
+  flex-grow: 1;
+  display: block !important; /* Nos aseguramos que no esté en 'none' */
+  min-height: 500px;         /* Dale un mínimo para que "exista" */
+  height: 85vh;              /* Que ocupe el 80% de la pantalla */
+  width: 75%;
+  position: sticky;
+    top: 20px;
+}
+
+
+    
+}
+
+
+
+/* Footer*/
+.footer-credits {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-top: 1px solid #333;
+  text-align: center;
+  font-family: 'VT323', monospace; /* Tu fuente retro */
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.status-badge {
+  display: inline-block;
+  background: #222;
+  color: #ffcc00; /* Color ámbar/alerta */
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #ffcc00;
+}
+
+.blink-dot {
+  height: 8px;
+  width: 8px;
+  background-color: #ffcc00;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+.footer-credits strong {
+  color: #aaa;
+} 
+
