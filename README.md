@@ -2,7 +2,6 @@
 
 Una aplicación web interactiva que visualiza el estado y la frecuencia de la red de Subterráneos de Buenos Aires en tiempo real, utilizando datos oficiales y una estética de terminal de control.
 
-![Snapshot del Proyecto](URL_DE_UNA_CAPTURA_DE_PANTALLA)
 
 ## 🌟 Características
 
@@ -33,8 +32,3 @@ Este proyecto utiliza el **Programa de Datos Abiertos de la Ciudad de Buenos Air
  Desarrollé este proyecto porque me encanta escribir código que sea de utilidad pública. Creo en el valor de los **Datos Abiertos** y en crear herramientas que permitan a los usuarios verificar si la información oficial es fidedigna, demostrando el potencial que tiene la tecnología cuando se pone al servicio de la gente.
 
 
-## 🚀 Instalación y Desarrollo
-
-1. Clonar el repositorio:
-   ```bash
-   git clone [https://github.com/TU_USUARIO/tu-repositorio.git](https://github.com/TU_USUARIO/tu-repositorio.git)
