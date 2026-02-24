@@ -8,6 +8,7 @@ function App() {
   const [viewMode, setViewMode] = useState('countdown'); // 'countdown' o 'clock'
   const [lineaSeleccionada, setLineaSeleccionada] = useState(null); // null = Home
   const [serverTime,setServerTime] =useState();
+  const [mapa, setMapa] = useState("https://www.openstreetmap.org/export/embed.html?bbox=-58.4284%2C-34.6285%2C-58.3551%2C-34.5804&amp;layer=t")
 
 
 const CABECERAS = {
@@ -82,7 +83,7 @@ const fetchSubte = async () => {
   setLoading(true);
   try {
 
-   const URL =`/api-subte/subtes/${import.meta.env.VITE_consulta_status_subte}`;
+   const URL ="/api-subte-segura";
     
     const response = await fetch(URL);
     const rawJson = await response.json();
@@ -186,7 +187,7 @@ const onClickSube = (id)=>{
         scrolling="no" 
         marginHeight="0" 
         marginWidth="0" 
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-58.4284%2C-34.6285%2C-58.3551%2C-34.5804&amp;layer=t"
+        src={mapa}
         className="subte-map-embed"
       ></iframe>
           
