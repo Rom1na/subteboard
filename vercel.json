@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api-subte-segura",
-      "destination": "/api/status-subte"
+      "destination": "/api/status-subte.js"
     }
   ]
 }
